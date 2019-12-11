@@ -1,12 +1,12 @@
 Star [] spaceStars = new Star[250];
 Spaceship ship = new Spaceship();
+ArrayList <Asteroids> AsteroidsBelt;
 
 boolean left = false;
 boolean right = false;
 boolean up = false;
 boolean down = false;
 boolean fire = false;
-
 
 public void keyPressed() {
   if(key == CODED && keyCode == UP){up = true;}  
@@ -25,9 +25,13 @@ public void keyPressed() {
 public void keyReleased() { 
   if(key == CODED && keyCode == UP){ 
     up = false;
+    ship.setDirectionX(0);
+    ship.setDirectionY(0);
   }
   else if(key == CODED && keyCode == DOWN){ 
     down = false;
+    ship.setDirectionX(0);
+    ship.setDirectionY(0);
   }
   else if(key == CODED && keyCode == LEFT){ 
     left = false;
@@ -43,6 +47,10 @@ public void setup()
   for (int i = 0; i < spaceStars.length; i++) {
     spaceStars[i] = new Star();    
   }  
+  AsteroidsBelt = new ArrayList <Asteroids>();
+  for (int i = 0; i < 20; i++) {
+    AsteroidsBelt.add(i, new Asteroids());  
+  }  
 }
 public void draw() 
 {
@@ -50,6 +58,17 @@ public void draw()
   for (int i = 0; i < spaceStars.length; i++) {
     spaceStars[i].show();
   }
+  for (int i = 0; i < AsteroidsBelt.size(); i++) {
+        AsteroidsBelt.get(i).show();
+        AsteroidsBelt.get(i).move();
+  }  
+  /*for(int i = AsteroidsBelt.size()-1; i >= 0; i--)
+  {
+    if(dist(ship.getCenterX(), ship.getCenterY(), ship.get(i).getCenterX(), AsteroidsBelt.get(i).getY()) < 20)
+    {
+      AsteroidsBelt.remove(i);
+    } 
+  }*/
   ship.show();
   ship.move();
   if (left == true){ship.setPointDirection((int)(ship.getPointDirection()-5));}
