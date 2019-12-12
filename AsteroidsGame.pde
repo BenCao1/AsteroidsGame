@@ -1,6 +1,7 @@
 Star [] spaceStars = new Star[250];
 Spaceship ship = new Spaceship();
 ArrayList <Asteroids> AsteroidsBelt;
+ArrayList <Bullet> shoot;
 
 boolean left = false;
 boolean right = false;
@@ -19,6 +20,9 @@ public void keyPressed() {
     ship.setDirectionX(0);
     ship.setDirectionY(0);
     ship.setPointDirection((int)(Math.random() * 361));
+  }
+    if(key==' '){
+    shoot.add(new Bullet(ship));
   }
 }  
 
@@ -50,7 +54,10 @@ public void setup()
   AsteroidsBelt = new ArrayList <Asteroids>();
   for (int i = 0; i < 20; i++) {
     AsteroidsBelt.add(i, new Asteroids());  
-  }  
+  }
+  /*shoot = new ArrayList<Bullet>();
+  for (int i = 0; i 
+  */
 }
 public void draw() 
 {
