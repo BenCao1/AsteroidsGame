@@ -62,13 +62,13 @@ public void draw()
         AsteroidsBelt.get(i).show();
         AsteroidsBelt.get(i).move();
   }  
-  /*for(int i = AsteroidsBelt.size()-1; i >= 0; i--)
+  for(int i = AsteroidsBelt.size()-1; i >= 0; i--)
   {
-    if(dist(ship.getCenterX(), ship.getCenterY(), ship.get(i).getCenterX(), AsteroidsBelt.get(i).getY()) < 20)
+    if(dist((float)ship.getCenterX(), (float)ship.getCenterY(), (float)AsteroidsBelt.get(i).getCenterX(), (float)AsteroidsBelt.get(i).getCenterY()) < 20)
     {
       AsteroidsBelt.remove(i);
     } 
-  }*/
+  }
   ship.show();
   ship.move();
   if (left == true){ship.setPointDirection((int)(ship.getPointDirection()-5));}

@@ -6,14 +6,14 @@ class Asteroids extends Floater {
     yCorners = new int[corners];
     xCorners[0] = -11;
     yCorners[0] = -8;
-    xCorners[1] = (int)(Math.random()*9)+6;
+    xCorners[1] = (int)(Math.random()*15)+6;
     yCorners[1] = -10;
-    xCorners[2] = (int)(Math.random()*9)+9;
+    xCorners[2] = (int)(Math.random()*10)+9;
     yCorners[2] = 0;
-    xCorners[3] = (int)(Math.random()*9)+5;
-    yCorners[3] = (int)(Math.random()*9)+9;
+    xCorners[3] = (int)(Math.random()*15)+5;
+    yCorners[3] = (int)(Math.random()*10)+9;
     xCorners[4] = -11;
-    yCorners[4] = (int)(Math.random()*9)+7;
+    yCorners[4] = (int)(Math.random()*15)+7;
     xCorners[5] = -13;
     yCorners[5] = 0;
 
@@ -33,6 +33,12 @@ class Asteroids extends Floater {
   public void move() {
    turn(rotSpeed);
    super.move();
+ }    
+ 
+   public double getCenterX() {
+     return myCenterX;
+  }
+  public double getCenterY () {
+    return myCenterY;  
   }  
-  
 }  
