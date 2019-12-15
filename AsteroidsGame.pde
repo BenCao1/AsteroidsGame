@@ -1,4 +1,4 @@
-Star [] spaceStars = new Star[250];
+Star [] spaceStars = new Star[400];
 Spaceship ship = new Spaceship();
 ArrayList <Asteroids> AsteroidsBelt;
 ArrayList <Bullet> shoot;
@@ -15,8 +15,8 @@ public void keyPressed() {
   if(key == CODED && keyCode == LEFT){left = true;}
   if(key == CODED && keyCode == RIGHT){right = true;} 
   if(key == 'h') {
-    ship.setCenterX((int)(Math.random() * 501));
-    ship.setCenterY((int)(Math.random() * 501));
+    ship.setCenterX((int)(Math.random() * 851));
+    ship.setCenterY((int)(Math.random() * 851));
     ship.setDirectionX(0);
     ship.setDirectionY(0);
     ship.setPointDirection((int)(Math.random() * 361));
@@ -47,17 +47,15 @@ public void keyReleased() {
 
 public void setup() 
 {
-  size(500, 500);
+  size(850, 850);
   for (int i = 0; i < spaceStars.length; i++) {
     spaceStars[i] = new Star();    
   }  
   AsteroidsBelt = new ArrayList <Asteroids>();
-  for (int i = 0; i < 20; i++) {
+  for (int i = 0; i < 30; i++) {
     AsteroidsBelt.add(i, new Asteroids());  
   }
-  /*shoot = new ArrayList<Bullet>();
-  for (int i = 0; i 
-  */
+  shoot = new ArrayList<Bullet>();
 }
 public void draw() 
 {
@@ -74,8 +72,22 @@ public void draw()
     if(dist((float)ship.getCenterX(), (float)ship.getCenterY(), (float)AsteroidsBelt.get(i).getCenterX(), (float)AsteroidsBelt.get(i).getCenterY()) < 20)
     {
       AsteroidsBelt.remove(i);
-    } 
-  }
+    }
+  }  
+  for (int i = 0; i < shoot.size(); i++) {
+     shoot.get(i).show();
+     shoot.get(i).move();
+  }  
+  for (int a = AsteroidsBelt.size() - 1 ; a >= 0; a--) {
+     for (int b = shoot.size() - 1; b>= 0; b--) {
+       if (dist((float)shoot.get(b).getX(), (float)shoot.get(b).getY(), (float)AsteroidsBelt.get(a).getCenterX(), (float)AsteroidsBelt.get(a).getCenterY()) < 15) {
+         shoot.remove(b);
+         AsteroidsBelt.remove(a); 
+         break;
+       }  
+       
+     }  
+  }  
   ship.show();
   ship.move();
   if (left == true){ship.setPointDirection((int)(ship.getPointDirection()-5));}
